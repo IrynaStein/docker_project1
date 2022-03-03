@@ -11,6 +11,7 @@ script:
 
 deploy:
   provider: elasticbeanstalk
+  skip_cleanup: true
   region: "us-west-1"
   app: "docker-project"
   env: "Dockerproject-env"
@@ -18,5 +19,5 @@ deploy:
   bucket-path: "docker-project"
   on:
     branch: main
-    access_key_id: "$AWS_ACCESS_KEY"
+    access_key_id: $AWS_ACCESS_KEY
     secret_access_key: "$AWS_SECRET_KEY"
