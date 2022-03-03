@@ -7,4 +7,17 @@ before_install:
   - docker build -t irynastein/docker_project1 -f Dockerfile.dev .
 
 script: 
-    - docker run -e CI=true irynastein/docker_project1 npm run test
+  - docker run -e CI=true irynastein/docker_project1 npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-1"
+  app: "docker-project"
+  env: "Dockerproject-env"
+  bucket_name: "elasticbeanstalk-us-west-1-925169454233"
+  bucket-path: "docker-project"
+  on:
+    branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: 
+      secure: "$AWS_SECRET_KEY"
